@@ -3,6 +3,23 @@ def read_input(path: str) -> list:
         return [line.strip() for line in file.readlines()]
 
 
+class Solution:
+    def __init__(self, content) -> None:
+        self.content = content
+        self.categories = []
+        self.parse_content()
+
+    def parse_content(self):
+        content = self.content
+        self.content = content
+
+    def part_one(self):
+        pass
+
+    def part_two(self):
+        pass
+
+
 def main():
     paths = ['test.txt', 'input.txt']
     for path in paths:
