@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 def extract_nums(line: str):
     nums = [int(num) for num in line.split()]
     source, destination, length = nums
@@ -29,9 +30,12 @@ def extract_seeds(line: str):
     return [int(num) for num in line.split()]
 
 
+=======
+>>>>>>> 5b2eabed34947c1377af7094da8ab1d73548e118
 class Solution:
     def __init__(self, content: list[str]):
         self.content = content
+<<<<<<< HEAD
 
     def part_one(self):
         seeds = extract_seeds(self.content[0])
@@ -48,12 +52,18 @@ class Solution:
                 ranges = []
 
         return 0
+=======
+        self.categories = []
+        self.parse_content()
+
+ 
+    def parse_content(self):
+        content = self.content
+        self.content = content
+
+    def part_one(self):
+        pass
+>>>>>>> 5b2eabed34947c1377af7094da8ab1d73548e118
 
     def part_two(self):
         pass
-
-    def solve(self):
-        part_one = self.part_one()
-        # part_two = self.part_two()
-        return part_one
-        # return part_one, part_two
