@@ -1,12 +1,27 @@
 def extract_nums(line: str):
-    print(line)
-    return [int(num) for num in line]
+    nums = [int(num) for num in line.split()]
+    source, destination, length = nums
+    source_ranges = (source, source + length - 1)
+    return (source_ranges, destination)
 
 
-def extract_categories(line: str):
-    line1, line2 = line.split('-to-')
-    line2 = line2.split()[0]
-    return line1, line2
+def seed_in_range(seed: int, source_ranges: tuple):
+    start_range, stop_range = source_ranges
+    return seed >= start_range and seed <= stop_range
+
+
+def map_seed(seed: int, ranges: list):
+    mapped_seed = 0
+    for r in ranges:
+        source_ranges, destination = r
+        start_range, stop_range = source_ranges
+        if seed >= start_range and seed <= stop_range:
+            offset = seed - start_range
+            mapped_seed = destination + offset
+        else:
+            mapped_seed = seed
+
+    return mapped_seed
 
 
 def extract_seeds(line: str):
@@ -15,39 +30,24 @@ def extract_seeds(line: str):
 
 
 class Solution:
-    def __init__(self, content) -> None:
+    def __init__(self, content: list[str]):
         self.content = content
-        self.category_map = {}
-
-    def find_lowest_location(self):
-        pass
-
-    def map_categories(self, categories, nums):
-        # seed-to-soil map:
-        # 50 98 2
-        # 52 50 48
-        source, destination = categories
-        destination, source, length = nums
-        length -= 1
-        destination_range = f"{destination} {destination+length}"
-        source_range = f"{source} {source+length}"
-        if destination not in self.category_map:
-            self.category_map[destination][destination_range] = source_range
 
     def part_one(self):
         seeds = extract_seeds(self.content[0])
-        for line in self.content:
-            if 'to' in line:
-                print(line)
-                categories = extract_categories(line)
-                source, destination = categories
-            elif line and line[0].isdigit():
+        test_seed = seeds[0]
+        ranges = []
+
+        for line in self.content[1:]:
+            if line != "" and line[0].isdigit():
                 nums = extract_nums(line)
-                self.map_categories(categories, extract_nums(nums))
-            elif len(line) == 0:
-                pass
-        print(self.category_map)
-        return "Part One 1"
+                ranges.append(nums)
+            elif line == "":
+                map_seed(test_seed, ranges)
+                print(map_seed)
+                ranges = []
+
+        return 0
 
     def part_two(self):
         pass

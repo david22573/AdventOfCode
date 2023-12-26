@@ -12,6 +12,7 @@ def main():
         content = read_input(path)
         solution = Solution(content).solve()
         print(f"The lowest location number in {path}: {solution}")
+        break
 
 
 if __name__ == "__main__":
