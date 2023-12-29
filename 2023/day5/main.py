@@ -10,7 +10,7 @@ def main():
     paths = ['test.txt', 'input.txt']
     for path in paths:
         content = read_input(path)
-        solution = Solution(content).solve()
+        solution = Solution(content).solve(part_two=True)
         print(f"The lowest location number in {path}: {solution}")
 
 

@@ -49,7 +49,26 @@ class Solution:
         return min(seed_locations)
 
     def part_two(self):
-        pass
+        seeds = extract_seeds(self.content[0])
+        seeds = [(seeds[i], seeds[i+1]) for i in range(0,len(seeds),2)]
+        seed_locations = []
+        ranges = []
+        print(seeds)
+        for starting_seed, r in seeds:
+            for i in range(r):
+                current_seed = starting_seed + i
+                for line in self.content[2:]:
+                    if line == "" or line == self.content[-1]:
+                        next_seed = map_seed(current_seed, ranges)
+                        ranges = []
+                        current_seed = next_seed
+                    elif line[0].isdigit():
+                        nums = extract_nums(line)
+                        ranges.append(nums)
+                seed_locations.append(current_seed)
+            break;
+
+      
 
     def solve(self, part_two=False):
         if part_two:
