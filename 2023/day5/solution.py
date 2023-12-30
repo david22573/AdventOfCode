@@ -54,7 +54,7 @@ class Solution:
         return min(seed_locations)
 
     def part_two(self):
-         
+       pass  
 
     def solve(self, part_two=False):
         if part_two:
